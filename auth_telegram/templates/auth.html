@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Автоматическое обновление -->
+    <meta http-equiv="refresh" content="5">
+    <!--  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Авторизация через Telegram</title>
+</head>
+<body>
+    <h2>Сайт с авторизацией через Telegram</h2>
+    
+    {% if request.user.is_authenticated %}
+        <p>
+            Вы вошли как {{ request.user.first_name }} (
+                <a href="https://t.me/{{ request.user.username }}">
+                    @{{ request.user.username }}
+                </a>
+            )
+        </p>
+    {% else %}
+        <a href="https://t.me/{{ TELEGRAM_BOT_USERNAME }}?start={{ token }}" target="_blank">Войти через Telegram</a>
+    {% endif %}
+</body>
+</html>
